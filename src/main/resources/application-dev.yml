@@ -6,12 +6,21 @@ eureka:
     register-with-eureka: true
   instance:
     preferIpAddress: true
-keycloak:
-  realm: tony-realm
-  auth-server-url: http://keycloak:8080/auth
-  ssl-required: external
-  resource: clusid
-  credentials:
-    secret: bJKmm6jtlz2a7kM7EhdIQ8voe6fSN0LR
-  use-resource-role-mappings: true
-  bearer-only: true
+#keycloak:
+#  realm: tony-realm
+#  auth-server-url: http://keycloak:8080/auth
+#  ssl-required: external
+#  resource: clusid
+#  credentials:
+#    secret: bJKmm6jtlz2a7kM7EhdIQ8voe6fSN0LR
+#  use-resource-role-mappings: true
+#  bearer-only: true
+spring:
+  security:
+    oauth2:
+      client:
+       registration:
+          resourceserver:
+            jwt:
+              issuer-uri: http://keycloak:8080/realms/tony-realm
+              jwks_uri: http://localhost:8080/realms/tony-realm/protocol/openid-connect/certs
